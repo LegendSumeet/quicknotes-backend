@@ -41,7 +41,7 @@ const QuickNotesApp = new Elysia()
     .get("/", () => new Response(file, { status: 200 }))
     .listen(port);
 logger.info(
-    `🦊 Quick Notes  is running at https://apiv1.toystack.dev/`,
+    `🦊 Quick Notes is running at https://apiv1.toystack.dev/`,
 );
 export { QuickNotesApp };
 export type App = typeof QuickNotesApp;
