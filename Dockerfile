@@ -20,4 +20,4 @@ COPY . .
 ENV NODE_ENV production
 
 # Define the command to run the application
-CMD ["bun", "start"]
+CMD ["bun run", "start"]
