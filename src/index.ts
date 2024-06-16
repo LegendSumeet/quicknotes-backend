@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { Elysia } from "elysia";
 import { autoroutes } from "elysia-autoroutes";
 import { cors } from "@elysiajs/cors";
@@ -6,6 +8,7 @@ import pino from "pino";
 import staticPlugin from "@elysiajs/static";
 const logger = pino({});
 const port = process.env.PORT ?? 3000;
+
 
 const file = Bun.file("./public/index.html")
 
