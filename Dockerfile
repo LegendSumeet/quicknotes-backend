@@ -1,23 +1,26 @@
 # Use the official Bun image as the base image
 FROM oven/bun
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json (or yarn.lock)
-COPY package*.json ./
-
-# Check if bun.lockb exists and copy it if it does
-COPY bun.lockb* ./
+# Copy the package files and lock file to the container
+COPY package*.json bun.lockb ./
 
 # Install dependencies using Bun
 RUN bun install
 
-# Copy all the source code, including the Prisma folder if it's outside the src directory
+# Copy the rest of the application code to the container
 COPY . .
 
-# Set the environment variable for Node environment
-ENV NODE_ENV production
+# # Generate the Prisma client
+# RUN npx prisma generate
 
-# Define the command to run the application
-CMD ["bun", "./src/index.ts"]
+# Ensure the necessary environment variable is set
+ENV NODE_ENV=production
+
+# Expose the port your app runs on (replace 3000 with your port if different)
+EXPOSE 3000
+
+# Command to run the application
+CMD ["bun", "start"]
