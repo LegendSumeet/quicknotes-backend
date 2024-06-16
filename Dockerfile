@@ -4,8 +4,11 @@ FROM oven/bun
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy the package.json, package-lock.json (or yarn.lock, bun.lockb) files to the working directory
-COPY package*.json bun.lockb ./
+# Copy the package.json and package-lock.json (or yarn.lock)
+COPY package*.json ./
+
+# Check if bun.lockb exists and copy it if it does
+COPY bun.lockb* ./
 
 # Install dependencies using Bun
 RUN bun install
