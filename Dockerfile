@@ -6,12 +6,12 @@ WORKDIR /usr/src/app
 
 # Copy the package files and lock file to the container
 COPY package*.json bun.lockb ./
-
+# Copy the rest of the application code to the container
+COPY . .
 # Install dependencies using Bun
 RUN bun install
 
-# Copy the rest of the application code to the container
-COPY . .
+
 
 # # Generate the Prisma client
 # RUN npx prisma generate
