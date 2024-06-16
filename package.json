@@ -1,0 +1,30 @@
+{
+  "name": "quicknotes",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.15.0"
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts",
+    "start": "NODE_ENV=production bun src/index.ts",
+    "test": "bun test"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
+    "@elysiajs/swagger": "^1.0.5",
+    "@prisma/client": "^5.15.0",
+    "@stricjs/router": "^5.0.6",
+    "@stricjs/utils": "^2.0.7",
+    "@types/node": "^20.14.2",
+    "elysia": "^1.0.23",
+    "elysia-autoroutes": "^0.5.0",
+    "pino": "^9.2.0"
+  }
+}
