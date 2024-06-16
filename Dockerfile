@@ -20,4 +20,4 @@ COPY . .
 ENV NODE_ENV production
 
 # Define the command to run the application
-CMD ["bun run", "start"]
+CMD ["bun", "./src/index.ts"]
