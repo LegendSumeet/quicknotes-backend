@@ -1,24 +1,25 @@
 {
-  "include": ["**/*"],
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
+    "target": "ES2021",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "types": ["bun-types"],
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    "noEmit": false,                    /* Disable emitting JavaScript output files. */
+    "strictNullChecks": true,          /* Enable strict null checks. */
+    "strictFunctionTypes": true,       /* Enable strict checking of function types. */
+    "strictBindCallApply": true,       /* Enable strict bind, call, and apply methods checks. */
+    "strictPropertyInitialization": true, /* Ensure all class properties are initialized in the constructor. */
+    "noImplicitAny": true,             /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitThis": true,            /* Raise error on 'this' expressions with an implied 'any' type. */
+    "alwaysStrict": true,              /* Ensure 'use strict' is always emitted. */
+    "noUnusedLocals": true,            /* Raise error on unused variables. */
+    "noUnusedParameters": true,        /* Raise error on unused parameters. */
+    "noFallthroughCasesInSwitch": true /* Raise error on fallthrough cases in switch statements. */
+  },
+  "exclude": ["node_modules" , "./dist"]          /* Exclude node_modules from TypeScript processing. */
 }

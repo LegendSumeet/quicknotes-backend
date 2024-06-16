@@ -1,26 +1,21 @@
-import { Elysia, t } from "elysia";
+import { Elysia } from "elysia";
 import { autoroutes } from "elysia-autoroutes";
-
 import { cors } from "@elysiajs/cors";
-import { staticPlugin } from "@elysiajs/static";
 import swagger from "@elysiajs/swagger";
 import pino from "pino";
-
+import staticPlugin from "@elysiajs/static";
 const logger = pino({});
-
-
 const port = process.env.PORT ?? 3000;
-const app = new Elysia()
+const QuickNotesApp = new Elysia()
+    .use(staticPlugin())
+
     .ws('/ws', {
         message(ws, message) {
             ws.send(message)
         }
     })
-    .use(staticPlugin())
     .use(
         swagger({
-
-
             documentation: {
                 info: {
                     title: "Quick Notes API",
@@ -34,26 +29,13 @@ const app = new Elysia()
     .use(cors())
     .use(
         autoroutes({
-            routesDir: "./routes",
+            routesDir: './routes',
         }),
     )
-    .get("/", () => ({ status: "ok" }), {
-        response: t.Object({
-            status: t.String({
-                description: "Returns ok for health check",
-            }),
-        }),
-        detail: {
-            description: "The root endpoint",
-            tags: ["App"],
-        },
-    })
-
     .listen(port);
-
 logger.info(
-    `🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`,
+    `🦊 Elysia is running at http://${QuickNotesApp.server?.hostname}:${QuickNotesApp.server?.port}`,
 );
+export { QuickNotesApp };
+export type App = typeof QuickNotesApp;
 
-export { app };
-export type App = typeof app;

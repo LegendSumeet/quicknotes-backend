@@ -9,11 +9,12 @@
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "build": "bun build src/index.ts",
-    "start": "NODE_ENV=production bun src/index.ts",
+    "start": "NODE_ENV=production bun ./index.js",
     "test": "bun test"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.4.5",
+    "tsbuild": "^0.2.1"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",

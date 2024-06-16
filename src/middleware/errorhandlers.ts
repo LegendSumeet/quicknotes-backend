@@ -1,4 +1,4 @@
-export const errorHandler = (err: any, req: Request, res: Response): Response => {
+export const errorHandler = (err: any, _req: Request, _res: Response): Response => {
     console.error(err);
   
     return new Response(
