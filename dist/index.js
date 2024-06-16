@@ -29,7 +29,5 @@ const QuickNotesApp = new Elysia()
 }))
     .get("/", () => new Response(file, { status: 200 }))
     .listen(port);
-
-
 logger.info(`🦊 Elysia is running at http://${QuickNotesApp.server?.hostname}:${QuickNotesApp.server?.port}`);
 export { QuickNotesApp };
