@@ -35,7 +35,11 @@ export default (app: App) => {
     if (!user) {
       return error(404.1, "User not found");
     }
-    return new Response(JSON.stringify(user), {
+    return new Response(JSON.stringify({
+      status: "User found",
+      user: user
+    
+    }), {
       status: 200,
     });
   });

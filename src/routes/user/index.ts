@@ -1,5 +1,6 @@
 import type { App } from "../..";
 import { createUser, findUserByEmail } from "../../services/userServices";
+import { logger } from "../../utils/loggers";
 
 interface User {
   email: string;
@@ -29,9 +30,10 @@ export default (app: App) => {
 
   );
 
-  app.get("/login", async ({ body, error }) => {
-    const { email } = body as User;
-    const user = await findUserByEmail(email);
+  app.get("/login", async ({ query, error }) => {
+
+  
+    const user = await findUserByEmail(query.email as string);
     if (!user) {
       return error(404.1, "User not found");
     }
