@@ -3,7 +3,7 @@ import type { App } from "../..";
 import prismaService from "../../services/noteServices";
 
 export default (app: App) => {
-  app.post("/createNote", async ({ body }) => {
+  app.post("/createnote", async ({ body }) => {
     try {
       const createNote = await prismaService.createNote(body as Note);
       return new Response(
@@ -17,7 +17,7 @@ export default (app: App) => {
     }
   });
 
-  app.get("/getUserAllNote", async ({ query, error }) => {
+  app.get("/getuserallnotebyid", async ({ query, error }) => {
     try {
 
       const userID = parseInt(query.userId as string, 10);
@@ -37,7 +37,7 @@ export default (app: App) => {
 
   });
 
-  app.get("/getNotebyId", async ({ query, error }) => {
+  app.get("/getnotebyid", async ({ query, error }) => {
     try {
       if (!query.id) return error(400.1, "User id is required");
       const userID = parseInt(query.id as string, 10);
@@ -60,7 +60,7 @@ export default (app: App) => {
 
   });
 
-  app.delete("/deleteNote", async ({query }) => {
+  app.delete("/deletenote", async ({query }) => {
     try {
   const userid = parseInt(query.id as string, 10);
       const deleteNote = await prismaService.deleteNote(userid);
@@ -75,7 +75,7 @@ export default (app: App) => {
     }
   });
 
-  app.put("/updateNote", async ({ body }) => {
+  app.put("/updatenote", async ({ body }) => {
     try {
       const { id, data } = body as { id: number, data: Partial<Note> };
       const updateNote = await prismaService.updateNote(id, data);
