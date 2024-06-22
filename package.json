@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/server-timing": "^1.0.2",
     "@elysiajs/static": "^1.0.3",
     "@elysiajs/swagger": "^1.0.5",
     "@prisma/client": "^5.15.0",
