@@ -21,6 +21,7 @@
     "@elysiajs/server-timing": "^1.0.2",
     "@elysiajs/static": "^1.0.3",
     "@elysiajs/swagger": "^1.0.5",
+    "@elysiajs/websocket": "^0.2.8",
     "@prisma/client": "^5.15.0",
     "@stricjs/router": "^5.0.6",
     "@stricjs/utils": "^2.0.7",

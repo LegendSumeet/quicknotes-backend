@@ -1,4 +1,4 @@
-import type { App } from "../..";
+import { broadcast, type App } from "../..";
 import { createUser, findUserByEmail } from "../../services/userServices";
 
 interface User {
@@ -14,7 +14,10 @@ export default (app: App) => {
     if (existingUser) {
       return error(409.1, "User already exists");
     }
+
     const newUser = await createUser(email, name);
+    broadcast(JSON.stringify({ type: 'new_user', data: newUser}));
+
     return new Response(
       JSON.stringify({ status: "User created", data: newUser }),
       {

@@ -19,7 +19,7 @@ model User {
   updatedAt    DateTime   @updatedAt
   createdAt    DateTime   @default(now())
   Notebook     Notebook[]
-
+  Request      String[]
   @@map("users")
 }
 
@@ -53,6 +53,6 @@ model Notebook {
   notes       Note[]
   updatedAt   DateTime @updatedAt
   createdAt   DateTime @default(now())
-
   @@map("notebooks")
 }
+

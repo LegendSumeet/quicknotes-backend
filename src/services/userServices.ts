@@ -1,10 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { validateUser } from "../utils/validitor";
 
 const prisma = new PrismaClient();
 
 export const createUser = async (email: string, name: string) => {
-    validateUser(email);
 
     const user = await prisma.user.create({
         data: {
