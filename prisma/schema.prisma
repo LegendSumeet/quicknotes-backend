@@ -7,19 +7,22 @@ datasource db {
   url      = "postgres://avnadmin:AVNS_3RUzt0FpS_kq1sNvH22@bun-database-vishwakarmasumeet01-5e50.j.aivencloud.com:24538/defaultdb?sslmode=require"
 }
 
-// schema.prisma
+// Define the models
 
 model User {
-  id           Int        @id @default(autoincrement())
-  email        String     @unique
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
   name         String?
-  sharedNotes  Note[]     @relation("SharedWith")
-  notes        Note[]
-  pendingNotes Note[]     @relation("PendingUser")
-  updatedAt    DateTime   @updatedAt
-  createdAt    DateTime   @default(now())
-  Notebook     Notebook[]
-  @@map("users")
+  sharedNotes  Note[]    @relation("SharedWith")
+  notes        Note[]    // Added to fix the relation
+  pendingNotes Note[]    @relation("PendingUser")
+  updatedAt    DateTime  @updatedAt
+  createdAt    DateTime  @default(now())
+  notebooks    Notebook[]
+
+  // Define the missing opposite relation field
+  pendingUser  Notebook[] @relation("PendingUser")
+  sharedNotebooks Notebook[] @relation("SharedWith")
 }
 
 model Note {
@@ -35,10 +38,8 @@ model Note {
   pendingUser User[]    @relation("PendingUser")
   updatedAt   DateTime  @updatedAt
   createdAt   DateTime  @default(now())
-  Notebook    Notebook? @relation(fields: [notebookId], references: [id])
+  notebook    Notebook? @relation(fields: [notebookId], references: [id])
   notebookId  Int?
-
-  @@map("notes")
 }
 
 model Notebook {
@@ -49,11 +50,9 @@ model Notebook {
   description String?
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
+  pendingUser User[]   @relation("PendingUser")
+  sharedWith  User[]   @relation("SharedWith")
   notes       Note[]
   updatedAt   DateTime @updatedAt
   createdAt   DateTime @default(now())
-  @@map("notebooks")
 }
-
-
-
