@@ -32,7 +32,7 @@ const QuickNotesApp = new Elysia()
     .use(
         jwt({
             name: "quicknoteapiv1token",
-            secret: process.env.JWT_SECRET!,
+            secret: "sf€afwefwefasrgsgdfgeadfgdfgeyedgdfgergraggafgdfgergdfgdfgagergaerrwrtreyeyrtuyuityityt",
             alg: "HS256",
         }),
     )
