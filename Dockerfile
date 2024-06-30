@@ -11,8 +11,6 @@ COPY . .
 # Install dependencies using Bun
 RUN bun install
 
-
-
 # # Generate the Prisma client
 # RUN npx prisma generate
 
