@@ -28,6 +28,7 @@ const QuickNotesApp = new Elysia()
             routesDir: './routes',
         }),
     )
+    .get("/", () => new Response(file, { status: 200 }))
     .use(
         jwt({
             name: "quicknoteapiv1token",
@@ -35,7 +36,6 @@ const QuickNotesApp = new Elysia()
             alg: "HS256",
         }),
     )
-    .get("/", () => new Response(file, { status: 200 }))
     .use(cors(
         {
             origin: [/.*\.apiv1.toystack\.dev$/, /.*\.toystack\.dev$/, 'http://localhost:3000'],
