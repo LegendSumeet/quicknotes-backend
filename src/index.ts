@@ -8,7 +8,7 @@ import pino, { P } from "pino";
 import staticPlugin from "@elysiajs/static";
 import jwt from "@elysiajs/jwt";
 const logger = pino({});
-const port = process.env.PORT ?? 3000;
+const port = 3000;
 const file = Bun.file("./public/index.html")
 const clients: WebSocket[] = [];
 const broadcast = (data: string) => {
