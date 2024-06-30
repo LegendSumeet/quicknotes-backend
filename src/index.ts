@@ -23,7 +23,7 @@ const broadcast = (data: string) => {
 
 const QuickNotesApp = new Elysia()
     .use(staticPlugin())
-    .get("/", () => new Response(file, { status: 200 }))
+    
     .use(
         autoroutes({
             routesDir: './routes',
@@ -36,7 +36,7 @@ const QuickNotesApp = new Elysia()
             alg: "HS256",
         }),
     )
-    
+    .get("/", () => new Response(file, { status: 200 }))
     .use(cors(
         {
             origin: [/.*\.apiv1.toystack\.dev$/, /.*\.toystack\.dev$/, 'http://localhost:3000'],
@@ -75,7 +75,7 @@ const QuickNotesApp = new Elysia()
             },
         }),
     )
-    .listen(port);
+    .listen(3000);
 
 
 
