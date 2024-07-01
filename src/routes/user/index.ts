@@ -7,7 +7,7 @@ interface User {
 }
 
 export default (app: App) => {
-  app.post("/register", async ({ body, error, quicknoteapiv1token }) => {
+  app.post("/register", async ({ body, error }) => {
     try {
       const { email, name } = body as User;
       const existingUser = await findUserByEmail(email);
@@ -17,9 +17,8 @@ export default (app: App) => {
 
       const newUser = await createUser(email, name);
       broadcast(JSON.stringify({ type: 'new_user', data: newUser }));
-      const token = await quicknoteapiv1token.sign({ email: newUser.email });
       return new Response(
-        JSON.stringify({ status: "User created", data: newUser, token }),
+        JSON.stringify({ status: "User created", data: newUser }),
         {
           status: 201,
         }
@@ -28,17 +27,14 @@ export default (app: App) => {
       return error(500.1, JSON.stringify(e));
     }
   });
-  app.get("/login", async ({ query, error, quicknoteapiv1token, headers }) => {
+  app.get("/login", async ({ query, error }) => {
     try {
       const user = await findUserByEmail(query.email as string);
-      const token = await quicknoteapiv1token.verify(headers.authorization);
-      if (!token) {
-        return error(401.1, "Invalid token");
-      } else {
+     
         return new Response(JSON.stringify(user), {
           status: 200,
         });
-      }
+      
 
     } catch (e) {
       return error(500.1, JSON.stringify(e));

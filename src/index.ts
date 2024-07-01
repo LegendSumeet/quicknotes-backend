@@ -23,17 +23,10 @@ const broadcast = (data: string) => {
 
 const QuickNotesApp = new Elysia()
     .use(staticPlugin())
-    
+
     .use(
         autoroutes({
             routesDir: './routes',
-        }),
-    )
-    .use(
-        jwt({
-            name: "quicknoteapiv1token",
-            secret: "sf€afwefwefasrgsgdfgeadfgdfgeyedgdfgergraggafgdfgergdfgdfgagergaerrwrtreyeyrtuyuityityt",
-            alg: "HS256",
         }),
     )
     .get("/", () => new Response(file, { status: 200 }))
