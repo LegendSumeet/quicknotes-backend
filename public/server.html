@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System and Server Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>System and Server Information</h1>
+        <div class="info">
+            <h2>Server Usage Information</h2>
+            <div id="serverStats">
+                <p class="stat"><strong>CPU Usage:</strong> <span id="cpuUsage">Loading...</span></p>
+                <p class="stat"><strong>Memory Usage:</strong> <span id="memoryUsage">Loading...</span></p>
+                <p class="stat"><strong>Disk Usage:</strong> <span id="diskUsage">Loading...</span></p>
+            </div>
+            <h2>System Information</h2>
+            <p>Display system information here...</p>
+            <h2>Other Important Things</h2>
+            <p>Display any other relevant information...</p>
+        </div>
+    </div>
+
+    <script>
+
+        async function fetchServerStats() {
+            try {
+                const response = await fetch('/stats');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch server stats');
+                }
+                const stats = await response.json();
+                document.getElementById('cpuUsage').textContent = stats.cpuUsage;
+                document.getElementById('memoryUsage').textContent = stats.memoryUsage;
+                document.getElementById('diskUsage').textContent = stats.diskUsage;
+            } catch (error) {
+                console.error('Error fetching server stats:', error);
+            }
+        }
+
+
+        window.onload = fetchServerStats;
+    </script>
+</body>
+
+</html>
